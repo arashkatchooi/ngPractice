@@ -6,9 +6,9 @@ import {SharedService} from './shared.service'
     template: `
         <h1>I am a child</h1>
         <div>
-            <ul *ngFor="#data in data">
-                <li>{{data}}</li>
-            </ul>
+
+            
+
         </div>
     `
 })
