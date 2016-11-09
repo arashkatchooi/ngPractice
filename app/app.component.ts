@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MyComponent} from './mycomponent';
+import {ParentComponent} from './parent.component';
 
 @Component({
     selector: 'my-app',

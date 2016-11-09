@@ -5,7 +5,9 @@ import {FromComponentComponent} from "./from-component.component";
 import {BrowserModule} from '@angular/platform-browser';
 import {AgGridModule} from 'ag-grid-ng2/main';
 import {RatioModule} from "./ratio.module";
-import {MyComponent} from "./mycomponent";
+import {ParentComponent} from "./parent.component";
+import {ChildComponent} from './child.component';
+import {ChildSiblingComponent} from './child-sibling.component';
 // import {ClickableModule} from "./clickable.module";
 
 @NgModule({
@@ -18,7 +20,9 @@ import {MyComponent} from "./mycomponent";
     declarations: [
         AppComponent,
         FromComponentComponent,
-        MyComponent
+        ParentComponent,
+        ChildComponent,
+        ChildSiblingComponent
     ],
     bootstrap: [AppComponent]
 })

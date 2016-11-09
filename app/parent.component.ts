@@ -14,6 +14,6 @@ import {ChildSiblingComponent} from './child-sibling.component';
     providers: [SharedService],
     directives: [ChildComponent, ChildSiblingComponent]
 })
-export class parentComponent{
+export class ParentComponent{
 
-} 
+}
