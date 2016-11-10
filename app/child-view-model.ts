@@ -1,5 +1,5 @@
 
-export class ViewModel {
+export class ChildViewModel {
 
     private _minValue: number;
     public get minValue(): number { return this._minValue; }
@@ -9,5 +9,7 @@ export class ViewModel {
     public get maxValue(): number { return this._maxValue; }
     public set maxValue(newmaxValue: number) {}
 
-
+    public _hasValue: boolean = false;
+    public get hasValue(): boolean { return this._hasValue; }
+    public set hasValue(newHasValue: boolean) {}
 }

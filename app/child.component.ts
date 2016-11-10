@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {SharedService} from './shared.service'
-import { ViewModel } from './view-model'
+import { ChildViewModel } from './child-view-model'
 
 @Component({
     selector: 'child-component',
@@ -9,9 +9,9 @@ import { ViewModel } from './view-model'
           <h1>I am a child (1)</h1>
           <div>
 
-                <input type="text" [(ngModel)]="_viewModel._maxValue"  (change)="onChange()" name="name1"  />
+                <input type="text" [(ngModel)]="_viewModel._maxValue"  (change)="onMaxChange()" name="name1"  />
 
-                <input type="text" [(ngModel)]="_viewModel._minValue"  (change)="onChange2()" name="name1"  />
+                <input type="text" [(ngModel)]="_viewModel._minValue"  (change)="onMinChange()" name="name1"  />
 
                 <hr/>
 
@@ -21,14 +21,14 @@ import { ViewModel } from './view-model'
 })
 export class ChildComponent implements OnInit{
 
-  private _viewModel: ViewModel = new ViewModel();
+  private _viewModel: ChildViewModel = new ChildViewModel();
 
-  titleValue : string ="";
+  // inputValue : string ="";
   @Output() titleChange= new EventEmitter<string>();
 
   @Input()
   get title() {
-    return this.titleValue;
+    // return this.inputValue;
   }
 
   set title(val) {
@@ -46,10 +46,10 @@ export class ChildComponent implements OnInit{
         this.data = this._sharedService.dataArray;
     }
 
-    onChange() {
-      this.titleChange.emit(this.titleValue );
+    onMaxChange() {
+      this.titleChange.emit(this._viewModel._maxValue);
     }
-    onChange2() {
+    onMinChange() {
       this.titleChange.emit(this._viewModel._minValue);
     }
 }
