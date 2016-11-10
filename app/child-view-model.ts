@@ -1,4 +1,5 @@
 
+import {EventEmitter} from '@angular/core';
 export class ChildViewModel {
 
     private _minValue: number;
@@ -25,15 +26,21 @@ export class ChildViewModel {
       this.maxValue = value *2 ;
     }
 
-    public ReverseMin() : string
+    public Reverse(reverseType: string,  titleChange : EventEmitter<string>) : string
     {
-      var result= this.minValue*2;
-      return result.toString();
-    }
-    public ReverseMax() : string
-    {
-      var result= this.maxValue/2
-      return result.toString();
+      var output="";
+      if (reverseType=='min')
+      {
+        var result= this.minValue*2;
+        output= result.toString();
+      }
+      else
+      {
+        var result= this.maxValue/2
+        output= result.toString();
+      }
+
+      titleChange.emit(output);
     }
 
 }
