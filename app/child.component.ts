@@ -6,13 +6,13 @@ import { ChildViewModel } from './child-view-model'
     selector: 'child-component',
     template: `
         <div style="border-style: groove;">
-          <h1>I am a child (1)</h1>
+          <h1>I am a child </h1>
           <div>
 
                 <input type="text" [(ngModel)]="_viewModel._maxValue"  (change)="onMaxChange()" name="name1"  />
-
                 <input type="text" [(ngModel)]="_viewModel._minValue"  (change)="onMinChange()" name="name1"  />
-
+                <button (click)="addData()"> Send Data To Parent </button>
+                <label > {{data}}</label>
                 <hr/>
 
           </div>
@@ -51,5 +51,10 @@ export class ChildComponent implements OnInit{
     }
     onMinChange() {
       this.titleChange.emit(this._viewModel._minValue);
+    }
+
+    addData(){
+        this._sharedService.insertData(this._viewModel._minValue +  this._viewModel._maxValue);
+
     }
 }
