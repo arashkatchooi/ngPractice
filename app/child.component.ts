@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {SharedService} from './shared.service'
 
 @Component({
@@ -8,7 +8,7 @@ import {SharedService} from './shared.service'
           <h1>I am a child (1)</h1>
           <div>
 
-                <input type="text" [(ngModel)]="data" (change)="onChange()" name="name1"  />
+                <input type="text" [(ngModel)]="titleValue"  name="name1"  />
                 <hr/>
 
           </div>
@@ -17,7 +17,20 @@ import {SharedService} from './shared.service'
 })
 export class ChildComponent implements OnInit{
 
-    @Output() notify: EventEmitter<string> = new EventEmitter<string>();
+  titleValue : string ="";
+  @Output() titleChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Input()
+  get title() {
+    return this.titleValue;
+  }
+
+  set title(val) {
+    this.titleValue = val;
+    this.titleChange.emit(this.titleValue);
+  }
+
+
 
     data: string[] = [];
     constructor(
