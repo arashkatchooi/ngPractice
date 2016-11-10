@@ -8,7 +8,7 @@ import {SharedService} from './shared.service'
           <h1>I am a child (1)</h1>
           <div>
 
-                <input type="text" [(ngModel)]="titleValue"  name="name1"  />
+                <input type="text" [(ngModel)]="titleValue"  (change)="onChange()" name="name1"  />
                 <hr/>
 
           </div>
@@ -18,10 +18,11 @@ import {SharedService} from './shared.service'
 export class ChildComponent implements OnInit{
 
   titleValue : string ="";
-  @Output() titleChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() titleChange= new EventEmitter<string>();
 
   @Input()
   get title() {
+
     return this.titleValue;
   }
 
@@ -40,6 +41,6 @@ export class ChildComponent implements OnInit{
     }
 
     onChange() {
-    this.notify.emit(this.data);
+      this.titleChange.emit(this.titleValue);
     }
 }

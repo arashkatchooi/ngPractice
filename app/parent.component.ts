@@ -26,7 +26,5 @@ export class ParentComponent{
    child1Title:string = '1-This text is passed to child';
    child2Title:string = '2-This text is passed to child';
 
-   onNotify(message:string):void {
-     this.child1Title=message;
-   }
+   
 }
