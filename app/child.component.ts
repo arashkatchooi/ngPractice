@@ -9,8 +9,8 @@ import { ChildViewModel } from './child-view-model'
           <h1>I am a child </h1>
           <div>
 
-                <input type="text" [(ngModel)]="_viewModel._maxValue"  (change)="onMaxChange()" name="name1"  />
-                <input type="text" [(ngModel)]="_viewModel._minValue"  (change)="onMinChange()" name="name1"  />
+                <input type="text" [(ngModel)]="_viewModel.maxValue"  (change)="onMaxChange()" name="name1"  />
+                <input type="text" [(ngModel)]="_viewModel.minValue"  (change)="onMinChange()" name="name2"  />
                 <button (click)="addData()"> Send Data To Parent </button>
                 <label > {{data}}</label>
                 <hr/>
@@ -33,11 +33,9 @@ export class ChildComponent implements OnInit{
 
   set title(val) {
     var result = parseInt(val);
-    this._viewModel._minValue=result/2;
-    this._viewModel._maxValue=result*2;
+    this._viewModel.AssignInputValue(result);
+    // this._viewModel._minValue=result /2;
   }
-
-
 
     data: string[] = [];
     constructor(
@@ -47,14 +45,16 @@ export class ChildComponent implements OnInit{
     }
 
     onMaxChange() {
-      this.titleChange.emit(this._viewModel._maxValue);
+      var reverse=this._viewModel.ReverseMax();
+      this.titleChange.emit(reverse);
     }
     onMinChange() {
-      this.titleChange.emit(this._viewModel._minValue);
+      var reverse=this._viewModel.ReverseMin();
+      this.titleChange.emit(reverse);
     }
 
     addData(){
-        this._sharedService.insertData(this._viewModel._minValue +  this._viewModel._maxValue);
+        this._sharedService.insertData(this._viewModel.minValue +  this._viewModel.maxValue);
 
     }
 }
