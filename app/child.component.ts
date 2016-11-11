@@ -9,8 +9,8 @@ import { ChildViewModel } from './child-view-model'
           <h1>I am a child </h1>
           <div>
 
-                <input type="text" [(ngModel)]="_viewModel.maxValue"  (change)="onChange('max')" name="name1"  />
-                <input type="text" [(ngModel)]="_viewModel.minValue"  (change)="onChange('min')" name="name2"  />
+                <input type="text" [(ngModel)]="_viewModel.maxValue"  name="name1"  />
+                <input type="text" [(ngModel)]="_viewModel.minValue"  name="name2"  />
                 <button (click)="addData()"> Send Data To Parent </button>
                 <label > {{data}}</label>
                 <hr/>
@@ -21,7 +21,7 @@ import { ChildViewModel } from './child-view-model'
 })
 export class ChildComponent implements OnInit{
 
-  private _viewModel: ChildViewModel = new ChildViewModel();
+  private _viewModel: ChildViewModel = new ChildViewModel(this.onChange);
 
   // inputValue : string ="";
   @Output() titleChange= new EventEmitter<string>();
@@ -43,9 +43,10 @@ export class ChildComponent implements OnInit{
         this.data = this._sharedService.dataArray;
     }
 
-    onChange(reverseType : string) {
-      var reverse=this._viewModel.Reverse(reverseType,this.titleChange);
-    }
+     onChange() {
+      //  var reverse=this._viewModel.Reverse(reverseType,this.titleChange);
+        this.titleChange.emit();
+     }
 
 
     addData(){
