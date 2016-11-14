@@ -2,32 +2,36 @@
 import {EventEmitter} from '@angular/core';
 export class ChildViewModel {
 
-    constructor(public onCallback: () => string;)
+    constructor(public titleChange:  EventEmitter<string>)
     {
-      this.onCallback=onCallback;
+      this.titleChange=titleChange;
     }
 
-    private onCallback: () => void;
+    private titleChange : EventEmitter<string>;
 
-    private _minValue: number;
-    public get minValue(): number { return this._minValue; }
-    public set minValue(newMinValue: number)
+    private _doubleValue: number;
+    public get doubleValue(): number { return this._doubleValue; }
+    public set doubleValue(newDoubleValue: number)
      {
-       if (this._minValue!=newMinValue) {
-         this._minValue=newMinValue;
-         var result= this.minValue*2;
-         this.onCallback(result);
+       if (this._doubleValue!=newDoubleValue) {
+         this._doubleValue=newDoubleValue;
+         var result= this.doubleValue;
+        //  if (this.titleChange!=null)
+        //  this.titleChange.emit(result);
        }
      }
 
-    private _maxValue: number;
-    public get maxValue(): number { return this._maxValue; }
-    public set maxValue(newMaxValue: number)
+    private _value: number;
+    public get value(): number { return this._value; }
+    public set value(newValue: number)
     {
-      if (this._maxValue!=newMaxValue) {
-        this._maxValue=newMaxValue;
-        var result= this.maxValue/2;
-        // this.onCallback(result);
+      if (this._value!=newValue) {
+        this._value=newValue;
+        var result= this.value;
+        // this.titleChange.emit(result);
+        //  if (this.titleChange!=null)
+        //  this.titleChange.emit(result);
+
       }
     }
 
@@ -37,8 +41,8 @@ export class ChildViewModel {
 
     public AssignInputValue(value: number)
     {
-      this.minValue = value /2 ;
-      this.maxValue = value *2 ;
+      this.doubleValue = value *2 ;
+      this.value = value  ;
     }
 
 }

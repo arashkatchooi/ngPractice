@@ -6,11 +6,13 @@ import { ChildViewModel } from './child-view-model'
     selector: 'child-component',
     template: `
         <div style="border-style: groove;">
-          <h1>I am a child </h1>
+          <h3>Child</h3>
+          <div>I am identical with my siblings, I get one input from my parent and multiply it to two</div>
+          <hr/>
           <div>
-
-                <input type="text" [(ngModel)]="_viewModel.maxValue"  name="name1"  />
-                <input type="text" [(ngModel)]="_viewModel.minValue"  name="name2"  />
+                input:
+                <input type="text" [(ngModel)]="_viewModel.value"  name="name1"  /> x 2 =
+                <label> {{_viewModel.doubleValue}} </label>
                 <button (click)="addData()"> Send Data To Parent </button>
                 <label > {{data}}</label>
                 <hr/>
@@ -21,10 +23,9 @@ import { ChildViewModel } from './child-view-model'
 })
 export class ChildComponent implements OnInit{
 
-  private _viewModel: ChildViewModel = new ChildViewModel(this.onChange);
-
   // inputValue : string ="";
   @Output() titleChange= new EventEmitter<string>();
+  private _viewModel: ChildViewModel = new ChildViewModel(this.titleChange);
 
   @Input()
   get title() {
@@ -50,7 +51,7 @@ export class ChildComponent implements OnInit{
 
 
     addData(){
-        this._sharedService.insertData(this._viewModel.minValue +  this._viewModel.maxValue);
+        this._sharedService.insertData(this._viewModel.doubleValue);
 
     }
 }
