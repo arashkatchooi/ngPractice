@@ -10,7 +10,7 @@ import {ChildSiblingComponent} from './child-sibling.component';
         <div class="container">
         <form novalidate>
            <div class="form-group">
-             <label for="firstChild">First child input</label>
+             <label for="firstChild">First child input:</label>
              <input type="text" class="form-control"  [(ngModel)]="child1Title" name="name1"  />
              </div>
            <br/>
@@ -18,15 +18,13 @@ import {ChildSiblingComponent} from './child-sibling.component';
              <label for="secondChild">Second child input:</label>
              <input type="text" class="form-control"  [(ngModel)]="child2Title" name="name2"  />
            </div>
+           <div>
+               <label> Shared data between parent and children is : {{this.sharedData}} </label>
+           </div>
         </form>
-        </div>
-        <span>
-            <div>
-                <label> Shared data between parent and children is : {{this.sharedData}} </label>
-            </div>
-        </span>
 
-            <br/>
+        <br/>
+          <div class="jumbotron span8">
             <div>
             <child-component [(title)]="child1Title" ></child-component>
             </div>
@@ -34,6 +32,7 @@ import {ChildSiblingComponent} from './child-sibling.component';
             <div>
             <child-component [(title)]="child2Title" ></child-component>
             </div>
+          </div>
         </div>
     `,
     styles: [`
@@ -63,6 +62,5 @@ export class ParentComponent {
 
    child1Title:string = '1';
    child2Title:string = '10';
-   tmp2 : string = "" ;
 
 }

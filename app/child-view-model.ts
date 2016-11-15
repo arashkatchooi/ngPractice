@@ -2,13 +2,14 @@
 import {EventEmitter} from '@angular/core';
 export class ChildViewModel {
 
-    constructor(public titleChange:  EventEmitter<string>)
+    constructor(public titleChange:  EventEmitter<string>, public onCallback: () => string;)
     {
+      this.onCallback=onCallback;
       this.titleChange=titleChange;
     }
 
+    private onCallback: () => void;
     private titleChange : EventEmitter<string>;
-
     private _doubleValue: number;
     public get doubleValue(): number { return this._doubleValue; }
     public set doubleValue(newDoubleValue: number)
@@ -29,10 +30,17 @@ export class ChildViewModel {
         this._value=newValue;
         var result= this.value;
         // this.titleChange.emit(result);
-        //  if (this.titleChange!=null)
-        //  this.titleChange.emit(result);
+         if (this.titleChange!=null)
+         setTimeout(this.emitValue(this.titleChange , result), 3000);
 
       }
+    }
+
+    emitValue= function (titleChange: EventEmitter<string>, result: string )
+    {
+       this.onCallback(titleChange, result);
+
+      //titleChange.emit(result);
     }
 
     private _hasValue: boolean = false;

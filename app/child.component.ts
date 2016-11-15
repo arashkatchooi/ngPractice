@@ -9,13 +9,12 @@ import { ChildViewModel } from './child-view-model'
           <h3>Child</h3>
           <div>I am identical with my siblings, I get one input from my parent and multiply it to two</div>
           <hr/>
-          <div >
-                input:
-                <input type="text" [(ngModel)]="_viewModel.value"  name="name1"  /> x 2 =
-                <label> {{_viewModel.doubleValue}} </label>
+          <div class="input-group span8">
+                <label>{{_viewModel.value}} x 2 ={{_viewModel.doubleValue}}</label>
+                <input type="text" class="form-control " [(ngModel)]="_viewModel.value"  name="name1"  />
                 <div>
                   <label> Send Data through injected service. </label>
-                  <label > Shared Data is : {{data}}. click on send to put {{_viewModel.doubleValue}} in to shared location</label>
+                  <label > Shared Data is : {{data}}. click on send to put {{_viewModel.doubleValue}} in to shared location </label>
                   <button class="btn btn-primary" (click)="addData()"> Send </button>
                 </div>
                 <hr/>
@@ -44,7 +43,7 @@ export class ChildComponent implements OnInit{
 
   // inputValue : string ="";
   @Output() titleChange= new EventEmitter<string>();
-  private _viewModel: ChildViewModel = new ChildViewModel(this.titleChange);
+  private _viewModel: ChildViewModel = new ChildViewModel(this.titleChange, this.onChange);
 
   @Input()
   get title() {
@@ -63,9 +62,10 @@ export class ChildComponent implements OnInit{
         this.data = this._sharedService.dataArray;
     }
 
-     onChange() {
+     onChange(emitter :EventEmitter<string>, result: string) {
+       var tmp="";
       //  var reverse=this._viewModel.Reverse(reverseType,this.titleChange);
-        this.titleChange.emit();
+      emitter.emit(this.result);
      }
 
 
