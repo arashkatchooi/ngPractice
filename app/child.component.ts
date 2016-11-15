@@ -13,8 +13,11 @@ import { ChildViewModel } from './child-view-model'
                 input:
                 <input type="text" [(ngModel)]="_viewModel.value"  name="name1"  /> x 2 =
                 <label> {{_viewModel.doubleValue}} </label>
-                <button (click)="addData()"> Send Data To Parent </button>
-                <label > {{data}}</label>
+                <div>
+                  <label> Send Data through injected service. </label>
+                  <label > Shared Data is : {{data}}. click on send to put {{_viewModel.doubleValue}} in to shared location</label>
+                  <button (click)="addData()"> Send </button>
+                </div>
                 <hr/>
 
           </div>
