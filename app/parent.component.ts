@@ -6,13 +6,13 @@ import {ChildSiblingComponent} from './child-sibling.component';
     selector: 'parent-component',
     template: `
 
-        <div style="border-style: double ;">
+        <div class="main">
         <h1>Parent</h1>
 
         <form novalidate class="simple-form">
-           First child input  :  <input type="text" [(ngModel)]="child1Title" name="name1"  />
+           First child input  :  <input type="text" align="right"  [(ngModel)]="child1Title" name="name1"  />
            <br/>
-           Second child input :<input type="text" [(ngModel)]="child2Title" name="name2"  />
+           Second child input :<input type="text"  align="right"  [(ngModel)]="child2Title" name="name2"  />
         </form>
         <span>
             <div>
@@ -21,15 +21,30 @@ import {ChildSiblingComponent} from './child-sibling.component';
         </span>
 
             <br/>
-            <div> Child 1
+            <div>
             <child-component [(title)]="child1Title" ></child-component>
             </div>
             <br/>
-            <div> Child 2
+            <div>
             <child-component [(title)]="child2Title" ></child-component>
             </div>
         </div>
     `,
+    styles: [`
+      .main {
+            display: inline-block;
+            font-size: large;
+            color: black;
+            padding: 0.8em 0.7em 0 0.7em;
+            background-color: #cacfd2 ;
+            line-height: 1em;
+            position: relative;
+            left: -1px;
+            top: -4px;
+            height: 100%;
+            border-radius: 4px 0 0 4px;
+          }
+      `]
     providers: [SharedService],
     directives: [ChildComponent, ChildSiblingComponent]
 })

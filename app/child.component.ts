@@ -5,24 +5,51 @@ import { ChildViewModel } from './child-view-model'
 @Component({
     selector: 'child-component',
     template: `
-        <div style="border-style: groove;">
+        <div class="childrens">
           <h3>Child</h3>
           <div>I am identical with my siblings, I get one input from my parent and multiply it to two</div>
           <hr/>
-          <div>
+          <div >
                 input:
                 <input type="text" [(ngModel)]="_viewModel.value"  name="name1"  /> x 2 =
                 <label> {{_viewModel.doubleValue}} </label>
                 <div>
                   <label> Send Data through injected service. </label>
                   <label > Shared Data is : {{data}}. click on send to put {{_viewModel.doubleValue}} in to shared location</label>
-                  <button (click)="addData()"> Send </button>
+                  <button class="button" (click)="addData()"> Send </button>
                 </div>
                 <hr/>
 
           </div>
         </div>
-    `
+    `,
+    styles: [`
+      button {
+      cursor: pointer;
+      position: relative;
+      left: 0;
+      background-color: #EEE;
+      margin: .5em;
+      padding: .3em 0;
+      height: 3.6em;
+      width: 10em;
+      border-radius: 4px;
+    }
+      .childrens {
+            display: inline-block;
+            font-size: medium;
+            color: white;
+            padding: 0.8em 0.7em 0 0.7em;
+            background-color: #607D8B;
+            line-height: 1em;
+            position: relative;
+            left: -1px;
+            top: -4px;
+            height: 10.8em;
+            margin-right: .8em;
+            border-radius: 4px 0 0 4px;
+          }
+      `]
 })
 export class ChildComponent implements OnInit{
 
