@@ -16,7 +16,7 @@ import { ChildViewModel } from './child-view-model'
                 <div>
                   <label> Send Data through injected service. </label>
                   <label > Shared Data is : {{data}}. click on send to put {{_viewModel.doubleValue}} in to shared location</label>
-                  <button class="button" (click)="addData()"> Send </button>
+                  <button class="btn btn-primary" (click)="addData()"> Send </button>
                 </div>
                 <hr/>
 
@@ -24,17 +24,6 @@ import { ChildViewModel } from './child-view-model'
         </div>
     `,
     styles: [`
-      button {
-      cursor: pointer;
-      position: relative;
-      left: 0;
-      background-color: #EEE;
-      margin: .5em;
-      padding: .3em 0;
-      height: 3.6em;
-      width: 10em;
-      border-radius: 4px;
-    }
       .childrens {
             display: inline-block;
             font-size: medium;
@@ -45,7 +34,7 @@ import { ChildViewModel } from './child-view-model'
             position: relative;
             left: -1px;
             top: -4px;
-            height: 10.8em;
+            height: 15.8em;
             margin-right: .8em;
             border-radius: 4px 0 0 4px;
           }

@@ -5,15 +5,21 @@ import {ChildSiblingComponent} from './child-sibling.component';
 @Component({
     selector: 'parent-component',
     template: `
-
         <div class="main">
         <h1>Parent</h1>
-
-        <form novalidate class="simple-form">
-           First child input  :  <input type="text" align="right"  [(ngModel)]="child1Title" name="name1"  />
+        <div class="container">
+        <form novalidate>
+           <div class="form-group">
+             <label for="firstChild">First child input</label>
+             <input type="text" class="form-control"  [(ngModel)]="child1Title" name="name1"  />
+             </div>
            <br/>
-           Second child input :<input type="text"  align="right"  [(ngModel)]="child2Title" name="name2"  />
+           <div class="form-group">
+             <label for="secondChild">Second child input:</label>
+             <input type="text" class="form-control"  [(ngModel)]="child2Title" name="name2"  />
+           </div>
         </form>
+        </div>
         <span>
             <div>
                 <label> Shared data between parent and children is : {{this.sharedData}} </label>
